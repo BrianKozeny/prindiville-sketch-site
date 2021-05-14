@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            font-size: 16px;
+        }
+    </style>
+
+    <!-- Page Name and Site Name -->
+    <title>Sketch</title>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <header class="header clearfix" style="background-color: #ffffff">
+
+        <!-- Site Name -->
+        <nav class="navbar navbar-dark bg-dark my-5">
+          <a class="navbar-brand" href="#">
+            <h1 class="h3 text-light">Prindiville Sketches</h1>
+          </a>
+        </nav>
+
+
+      </header>
+
+      <div class="row">
+
+        <!--
+        <div class="col-sm-3">
+
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a onclick="document.getElementById('welcome').scrollIntoView();" class="nav-link" href="#welcome">Welcome</a>
+            <li class="nav-item">
+                <a onclick="document.getElementById('raw-footage').scrollIntoView();" class="nav-link" href="#raw-footage">Raw Footage</a>
+              <ul>
+                <li  class="nav-item">
+                    <a onclick="document.getElementById('shocking-interview').scrollIntoView();" class="nav-link" href="#shocking-interview">Shocking Interview</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+                <a onclick="document.getElementById('finished-sketches').scrollIntoView();" class="nav-link" href="#finished-sketches">Finished Sketches</a>
+          </ul>
+
+        </div>
+        -->
+
+        <div class="col-sm-12">
+
+          <!-- Design Body -->
+          <div class="page-contents">
+
+            <!-- Welcome -->
+            <div id="welcome" class="mb-5 pb-1">
+                <h2>Welcome, my brethren</h2>
+                <hr />
+                <p>I made a site where we can share our beautifully written / filmed sketches. Our mission is to create sketches so beautiful the world is strong-armed into eternal peace and harmony and they bring the McRib back forever. Peace be with you. Let's get that bread.</p>
+                <p>I cranked this minimal site out in a few minutes. Brian will be improving it as we move forward. Eventually, we should be able to login, upload / download raw sketch clips, share and comment on scripts, etc. It will be dopacious. (Don't bother googling that word. It does not exist).</p>
+            </div>
+
+            <!-- Raw Footage -->
+            <div id="raw-footage" class="col-12 px-0 mb-5 pb-1">
+                <div class="mb-5">
+                    <h2>Raw Footage</h2>
+                    <hr />
+                    <p>Here is where you can download the raw sketch footage to edit them into mind-bending, heart-imploading, game-changing sketches.</p>
+                </div>
+                <div class="row">
+                    <!-- Shocking Interview -->
+                    <div id="shocking-interview" class="p-3 mb-5 col-12 col-md-6">
+                        <div class="card" style="min-height:200px;">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                              <div>
+                                  <h4 class="card-title">Shocking Interview</h4>
+                                  <p>An interview with a boy who has a <span class="font-italic">yucky</span> power. Or perhaps...a curse?</p>
+                              </div>
+                              <div class="row">
+                                  <div class="col-12 col-lg-6 mb-2 mb-lg-0">
+                                      <a class="col-12 d-flex p-0" href="/raw/shocking.zip">
+                                          <button class="btn btn-primary col-12" style="white-space: normal;" href="">
+                                              <div>Download Footage</div>
+                                              <div>(1021.6 MB)</div>
+                                          </button>
+                                      </a>
+                                  </div>
+                                  <div class="col-12 col-lg-6 d-flex">
+                                      <a class="col-12 d-flex p-0" href="https://drive.google.com/file/d/1MOargsNUkGFHz-_FXzjJjOyJcEaLXQgH/view?usp=sharing">
+                                          <button class="btn btn-secondary col-12 d-flex align-items-center justify-content-center">
+                                              View Script
+                                          </button>
+                                      </a>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bot -->
+                    <div id="sbot" class="p-3 mb-5 col-12 col-md-6">
+                        <div class="card" style="min-height:200px;">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                              <div>
+                                  <h4 class="card-title">Bot?</h4>
+                                  <p>A tempting tinder match that might be just a little too good to be true...</p>
+                              </div>
+                              <div class="row">
+                                  <div class="col-12 col-lg-6 mb-2 mb-lg-0">
+                                      <a class="col-12 d-flex p-0">
+                                          <button disabled class="btn btn-primary col-12" style="white-space: normal;">
+                                              <div>Download Footage</div>
+                                              <div>(no footage)</div>
+                                          </button>
+                                      </a>
+                                  </div>
+                                  <div class="col-12 col-lg-6 d-flex">
+                                      <a class="col-12 d-flex p-0" href="https://drive.google.com/file/d/1nKMVluEwIlJojJECBfhMz_QYgUdIrrlM/view?usp=sharing">
+                                          <button class="btn btn-secondary col-12 d-flex align-items-center justify-content-center">
+                                              View Script
+                                          </button>
+                                      </a>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Finished Sketches -->
+            <div id="finished-sketches" class="mb-5">
+                <h2>Finished Sketches</h2>
+                <hr />
+                <p>One day, this list will be fuller than a harvest in august after some horrendous sacrifices.</p>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
