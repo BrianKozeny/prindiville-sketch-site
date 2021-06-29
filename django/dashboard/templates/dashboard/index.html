@@ -34,6 +34,7 @@
       <div class="col-sm-12">
         <a href="video/" class="btn btn-primary">Upload</a>
       </div>
+      <br>
 
       </header>
       <div class="row">
@@ -49,8 +50,7 @@
               <ul>
                 <li  class="nav-item">
                     <a onclick="document.getElementById('shocking-interview').scrollIntoView();" class="nav-link" href="#shocking-interview">Shocking Interview</a></li>
-              </ul>
-            </li>
+              </ul> </li>
             <li class="nav-item">
                 <a onclick="document.getElementById('finished-sketches').scrollIntoView();" class="nav-link" href="#finished-sketches">Finished Sketches</a>
           </ul>
@@ -136,6 +136,14 @@
                 <h2>Finished Sketches</h2>
                 <hr />
                 <p>One day, this list will be fuller than a harvest in august after some horrendous sacrifices.</p>
+                {% for video in videos %}
+                <video width='600' controls> 
+                    <source src='{{ video }}' type='video/mp4'>
+                        File not found.
+                </video>
+
+                {% endfor %}
+
             </div>
 
         </div>
