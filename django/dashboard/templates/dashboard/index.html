@@ -134,16 +134,28 @@
             <!-- Finished Sketches -->
             <div id="finished-sketches" class="mb-5">
                 <h2>Finished Sketches</h2>
-                <hr />
-                <p>One day, this list will be fuller than a harvest in august after some horrendous sacrifices.</p>
-                {% for video in videos %}
-                <video width='600' controls> 
-                    <source src='{{ video }}' type='video/mp4'>
-                        File not found.
-                </video>
-
-                {% endfor %}
-
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for video in firstvideo %}
+                         <tr>
+                             <td>{{ video.title }}</td>
+                             <td>{{ video.description }}</td>
+                             <td>
+                                 <a href="{{ video.file.url }}" class="btn btn-primary btn-sm">
+                                    Watch / Download
+                                 </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
 
         </div>

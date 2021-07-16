@@ -1,43 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
-from django.contrib import messages 
 from .models import Video
 from .forms import VideoForm
 
 def index(request):
     firstvideo= Video.objects.all()
-    videofile = []
-    for video in firstvideo:
-        videofile.append(video.file.url)
-
-
-    form= VideoForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form.save()
-
-    context= {'videos': videofile,
-              'form': form
-              }
-
-
-    return render(request, "dashboard/index.html", context)
+    return render(request, "dashboard/index.html",{ 'firstvideo': firstvideo })
 
 def showvideo(request):
 
-    firstvideo= Video.objects.all()
-    videofile = []
-    for video in firstvideo:
-        videofile.append(video.file.url)
+    if request.method == 'POST':
+        form= VideoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+            form = VideoForm()
 
-
-    form= VideoForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form.save()
-        messages.success(request, 'Form submission successful')
-
-    context= {'videos': videofile,
-              'form': form
-              }
-
-    return render(request, 'dashboard/videos.html', context)
+    return render(request, 'dashboard/videos.html', { 'form': form })
 
