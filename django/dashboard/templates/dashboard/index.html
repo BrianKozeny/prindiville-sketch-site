@@ -139,6 +139,7 @@
                         <tr>
                             <th>Title</th>
                             <th>Description</th>
+                            <th>File Size</th>
                             <th>Download</th>
                         </tr>
                     </thead>
@@ -147,6 +148,7 @@
                          <tr>
                              <td>{{ video.title }}</td>
                              <td>{{ video.description }}</td>
+                             <td>{{video.file.size|filesizeformat}}</td>
                              <td>
                                  <a href="{{ video.file.url }}" class="btn btn-primary btn-sm">
                                     Watch / Download
