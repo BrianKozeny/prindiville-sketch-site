@@ -138,30 +138,55 @@
                           <p>{{ video.description }}</p>
                       </div>
                       <div class="row">
-                          <div class="col-12 col-lg-6 mb-2 mb-lg-0">
+                          <div class="col-12 col-lg-12 mb-2 mb-lg-0">
                               {% if video.footage %}
-                                  <a class="col-12 d-flex p-0" href="{{ video.footage.url }}">
+                                  <a class="col-12 d-flex p-0 mb-2" href="{{ video.footage.url }}">
                                       <button class="btn btn-primary col-12" style="white-space: normal;">
                                           <div>Download Footage</div>
+                                          <div>({{video.footage.size|filesizeformat}})</div>
                                       </button>
                                     </a>
                               {% else %}
+                                <a class="col-12 d-flex p-0 w-100 mb-2 align-self-center">
                                   <button disabled class="btn btn-primary col-12" style="white-space: normal;">
                                       <div>No Footage</div>
                                   </button>
+                                </a>
                               {% endif %}
                           </div>
-                          <div class="col-12 col-lg-6 d-flex">
+                      </div>
+                      <div class="row">
+                          <div class="col-12 col-lg-12 d-flex">
                               {% if video.script %}
-                                  <a class="col-12 d-flex p-0" href="{{ video.script.url }}">
-                                      <button class="btn btn-secondary col-12 d-flex align-items-center justify-content-center">
+                                  <a class="col-12 d-flex p-0 mt-2 mb-2" href="{{ video.script.url }}">
+                                      <button class="btn btn-primary col-12 d-flex align-items-center justify-content-center">
                                           View Script
                                       </button>
                                   </a>
                               {% else %}
+                                <a class="col-12 d-flex p-0 w-100 mb-2 mt-2 align-self-center">
                                   <button disabled class="btn btn-primary col-12" style="white-space: normal;">
-                                      <div>No Footage</div>
+                                      <div>No Script</div>
                                   </button>
+                                </a>
+                              {% endif %}
+                          </div>    
+                      </div>    
+                      <div class="row">
+                          <div class="col-12 col-lg-12 w-100 mb-2 mb-lg-0">
+                              {% if video.footage %}
+                                  <a class="col-12 d-flex w-100 p-0 mb-2 mt-2" href="{{ video.file.url }}">
+                                      <button class="btn btn-primary col-12" style="white-space: normal;">
+                                          <div>Finsished Sketch</div>
+                                          <div>({{video.file.size|filesizeformat}})</div>
+                                      </button>
+                                  </a>
+                              {% else %}
+                                <a class="col-12 d-flex p-0 w-100 mt-2 mb-2 align-self-center">
+                                  <button disabled class="btn btn-primary col-12" style="white-space: normal;">
+                                      <div>No Finished Sketch</div>
+                                  </button>
+                                </a>
                               {% endif %}
                           </div>
                       </div>
@@ -171,34 +196,6 @@
            {% endfor %}
         </div>
     </div>
-            <!-- Finished Sketches -->
-            <div id="finished-sketches" class="mb-5">
-                <h2>Finished Sketches</h2>
-                <table class="table mb-0">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>File Size</th>
-                            <th>Download</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for video in firstvideo %}
-                         <tr>
-                             <td>{{ video.title }}</td>
-                             <td>{{ video.description }}</td>
-                             <td>{{video.file.size|filesizeformat}}</td>
-                             <td>
-                                 <a href="{{ video.file.url }}" class="btn btn-primary btn-sm">
-                                    Watch / Download
-                                 </a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
 
         </div>
       </div>
