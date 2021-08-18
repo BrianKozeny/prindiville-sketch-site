@@ -1,7 +1,32 @@
 from django import forms
-from .models import Video
+from .models import Sketch, SketchFileUpload
 
-class VideoForm(forms.ModelForm):
+class SketchForm(forms.ModelForm):
     class Meta:
-        model = Video
-        fields = ('title', 'description', 'script', 'footage', 'file')
+        model = Sketch
+        fields = ['title', 'description']
+        
+
+class ScriptUploadForm(forms.ModelForm):
+    class Meta:
+        model = SketchFileUpload
+        fields = ['file']
+        labels = {
+            "file": "Upload Script",
+        }
+
+class FootageUploadForm(forms.ModelForm):
+    class Meta:
+        model = SketchFileUpload
+        fields = ['file']
+        labels = {
+            "file": "Upload Footage Clips",
+        }
+        
+class FinalVideoUploadForm(forms.ModelForm):
+    class Meta:
+        model = SketchFileUpload
+        fields = ['file']
+        labels = {
+            "file": "Upload Final Video",
+        }

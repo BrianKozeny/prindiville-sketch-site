@@ -32,7 +32,7 @@
           </a>
         </nav>
       <div class="col-sm-12">
-        <a href="video/" class="btn btn-primary">Upload</a>
+        <a href="sketch/" class="btn btn-primary">Upload</a>
       </div>
       <br>
 
@@ -71,132 +71,74 @@
                     <p>Here is where you can download the raw sketch footage to edit them into mind-bending, heart-imploading, game-changing sketches.</p>
                 </div>
                 <div class="row">
-                    <!-- Shocking Interview -->
-                    <div id="shocking-interview" class="p-3 mb-5 col-12 col-md-6">
-                        <div class="card" style="min-height:200px;">
-                            <div class="card-body d-flex flex-column justify-content-between">
-                              <div>
-                                  <h4 class="card-title">Shocking Interview</h4>
-                                  <p>An interview with a boy who has a <span class="font-italic">yucky</span> power. Or perhaps...a curse?</p>
-                              </div>
-                              <div class="row">
-                                  <div class="col-12 col-lg-6 mb-2 mb-lg-0">
-                                      <a class="col-12 d-flex p-0" href="https://sketch.malin.software/raw/shocking.zip">
-                                          <button class="btn btn-primary col-12" style="white-space: normal;" href="">
-                                              <div>Download Footage</div>
-                                              <div>(1021.6 MB)</div>
-                                          </button>
-                                      </a>
-                                  </div>
-                                  <div class="col-12 col-lg-6 d-flex">
-                                      <a class="col-12 d-flex p-0" href="https://drive.google.com/file/d/1MOargsNUkGFHz-_FXzjJjOyJcEaLXQgH/view?usp=sharing">
-                                          <button class="btn btn-secondary col-12 d-flex align-items-center justify-content-center">
-                                              View Script
-                                          </button>
-                                      </a>
-                                  </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Bot -->
+                   {% for sketch in firstsketch %}
                     <div id="sbot" class="p-3 mb-5 col-12 col-md-6">
                         <div class="card" style="min-height:200px;">
                             <div class="card-body d-flex flex-column justify-content-between">
                               <div>
-                                  <h4 class="card-title">Bot?</h4>
-                                  <p>A tempting tinder match that might be just a little too good to be true...</p>
+                                  <h4 class="card-title">{{ sketch.title }}</h4>
+                                  <p>{{ sketch.description }}</p>
                               </div>
                               <div class="row">
-                                  <div class="col-12 col-lg-6 mb-2 mb-lg-0">
-                                      <a class="col-12 d-flex p-0">
+                                  <div class="col-12 col-lg-12 mb-2 mb-lg-0">
+                                      {% if sketch.footage %}
+                                          <a class="col-12 d-flex p-0 mb-2" href="{{ sketch.footage.url }}">
+                                              <button class="btn btn-primary col-12" style="white-space: normal;">
+                                                  <div>Download Footage</div>
+                                                  <div>({{sketch.footage.size|filesizeformat}})</div>
+                                              </button>
+                                            </a>
+                                      {% else %}
+                                        <a class="col-12 d-flex p-0 w-100 mb-2 align-self-center">
                                           <button disabled class="btn btn-primary col-12" style="white-space: normal;">
-                                              <div>Download Footage</div>
-                                              <div>(no footage)</div>
+                                              <div>No Footage</div>
                                           </button>
-                                      </a>
+                                        </a>
+                                      {% endif %}
                                   </div>
-                                  <div class="col-12 col-lg-6 d-flex">
-                                      <a class="col-12 d-flex p-0" href="https://drive.google.com/file/d/1nKMVluEwIlJojJECBfhMz_QYgUdIrrlM/view?usp=sharing">
-                                          <button class="btn btn-secondary col-12 d-flex align-items-center justify-content-center">
-                                              View Script
+                              </div>
+                              <div class="row">
+                                  <div class="col-12 col-lg-12 d-flex">
+                                      {% if sketch.script %}
+                                          <a class="col-12 d-flex p-0 mt-2 mb-2" href="{{ sketch.script.url }}">
+                                              <button class="btn btn-primary col-12 d-flex align-items-center justify-content-center">
+                                                  View Script
+                                              </button>
+                                          </a>
+                                      {% else %}
+                                        <a class="col-12 d-flex p-0 w-100 mb-2 mt-2 align-self-center">
+                                          <button disabled class="btn btn-primary col-12" style="white-space: normal;">
+                                              <div>No Script</div>
                                           </button>
-                                      </a>
+                                        </a>
+                                      {% endif %}
+                                  </div>    
+                              </div>    
+                              <div class="row">
+                                  <div class="col-12 col-lg-12 w-100 mb-2 mb-lg-0">
+                                      {% if sketch.footage %}
+                                          <a class="col-12 d-flex w-100 p-0 mb-2 mt-2" href="{{ sketch.file.url }}">
+                                              <button class="btn btn-primary col-12" style="white-space: normal;">
+                                                  <div>Finsished Sketch</div>
+                                                  <div>({{sketch.file.size|filesizeformat}})</div>
+                                              </button>
+                                          </a>
+                                      {% else %}
+                                        <a class="col-12 d-flex p-0 w-100 mt-2 mb-2 align-self-center">
+                                          <button disabled class="btn btn-primary col-12" style="white-space: normal;">
+                                              <div>No Finished Sketch</div>
+                                          </button>
+                                        </a>
+                                      {% endif %}
                                   </div>
                               </div>
                             </div>
                         </div>
                     </div>
-
-           {% for video in firstvideo %}
-            <div id="sbot" class="p-3 mb-5 col-12 col-md-6">
-                <div class="card" style="min-height:200px;">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                      <div>
-                          <h4 class="card-title">Bot?</h4>
-                          <p>{{ video.description }}</p>
-                      </div>
-                      <div class="row">
-                          <div class="col-12 col-lg-12 mb-2 mb-lg-0">
-                              {% if video.footage %}
-                                  <a class="col-12 d-flex p-0 mb-2" href="{{ video.footage.url }}">
-                                      <button class="btn btn-primary col-12" style="white-space: normal;">
-                                          <div>Download Footage</div>
-                                          <div>({{video.footage.size|filesizeformat}})</div>
-                                      </button>
-                                    </a>
-                              {% else %}
-                                <a class="col-12 d-flex p-0 w-100 mb-2 align-self-center">
-                                  <button disabled class="btn btn-primary col-12" style="white-space: normal;">
-                                      <div>No Footage</div>
-                                  </button>
-                                </a>
-                              {% endif %}
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-12 col-lg-12 d-flex">
-                              {% if video.script %}
-                                  <a class="col-12 d-flex p-0 mt-2 mb-2" href="{{ video.script.url }}">
-                                      <button class="btn btn-primary col-12 d-flex align-items-center justify-content-center">
-                                          View Script
-                                      </button>
-                                  </a>
-                              {% else %}
-                                <a class="col-12 d-flex p-0 w-100 mb-2 mt-2 align-self-center">
-                                  <button disabled class="btn btn-primary col-12" style="white-space: normal;">
-                                      <div>No Script</div>
-                                  </button>
-                                </a>
-                              {% endif %}
-                          </div>    
-                      </div>    
-                      <div class="row">
-                          <div class="col-12 col-lg-12 w-100 mb-2 mb-lg-0">
-                              {% if video.footage %}
-                                  <a class="col-12 d-flex w-100 p-0 mb-2 mt-2" href="{{ video.file.url }}">
-                                      <button class="btn btn-primary col-12" style="white-space: normal;">
-                                          <div>Finsished Sketch</div>
-                                          <div>({{video.file.size|filesizeformat}})</div>
-                                      </button>
-                                  </a>
-                              {% else %}
-                                <a class="col-12 d-flex p-0 w-100 mt-2 mb-2 align-self-center">
-                                  <button disabled class="btn btn-primary col-12" style="white-space: normal;">
-                                      <div>No Finished Sketch</div>
-                                  </button>
-                                </a>
-                              {% endif %}
-                          </div>
-                      </div>
-                    </div>
+                   {% endfor %}
                 </div>
             </div>
-           {% endfor %}
-        </div>
-    </div>
-
         </div>
       </div>
     </div>
