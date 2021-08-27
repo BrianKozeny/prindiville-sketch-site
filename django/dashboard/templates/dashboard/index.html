@@ -82,61 +82,65 @@
                               </div>
                               <div class="row">
                                   <div class="col-12 col-lg-12 mb-2 mb-lg-0">
-                                      <!--
-                                          {% if sketch.footage %}
-                                              <a class="col-12 d-flex p-0 mb-2" href="{{ sketch.footage.url }}">
-                                                  <button class="btn btn-primary col-12" style="white-space: normal;">
-                                                      <div>Download Footage</div>
-                                                      <div>({{sketch.footage.size|filesizeformat}})</div>
-                                                  </button>
-                                                </a>
-                                          {% else %}
-                                            <a class="col-12 d-flex p-0 w-100 mb-2 align-self-center">
-                                              <button disabled class="btn btn-primary col-12" style="white-space: normal;">
-                                                  <div>No Footage</div>
-                                              </button>
-                                            </a>
-                                          {% endif %}
-
-                                          <div class="row">
-                                              <div class="col-12 col-lg-12 d-flex">
-                                                  {% if sketch.script %}
-                                                      <a class="col-12 d-flex p-0 mt-2 mb-2" href="{{ sketch.script.url }}">
-                                                          <button class="btn btn-primary col-12 d-flex align-items-center justify-content-center">
-                                                              View Script
-                                                          </button>
-                                                      </a>
-                                                  {% else %}
-                                                    <a class="col-12 d-flex p-0 w-100 mb-2 mt-2 align-self-center">
-                                                      <button disabled class="btn btn-primary col-12" style="white-space: normal;">
-                                                          <div>No Script</div>
+                                          {% for footage in sketch.footage_uploads  %}
+                                            {% if footage in sketch.footage.uploads %}
+                                                  <a class="col-12 d-flex p-0 mb-2" href="{{ footage.file.url }}">
+                                                      <button class="btn btn-primary col-12" style="white-space: normal;">
+                                                          <div>Download Footage</div>
+                                                          <div>({{ footage.file.size|filesizeformat }})</div>
                                                       </button>
                                                     </a>
-                                                  {% endif %}
+                                              {% else %}
+                                                <a class="col-12 d-flex p-0 w-100 mb-2 align-self-center">
+                                                  <button disabled class="btn btn-primary col-12" style="white-space: normal;">
+                                                      <div>No Footage</div>
+                                                  </button>
+                                                </a>
+                                              {% endif %}
+                                          {% endfor %}
+
+                                          <div class="row">
+                                              <div class="col-12 col-lg-12">
+                                                  {% for script in sketch.footage_uploads  %}
+                                                      {% if script in sketch.footage_uploads %}
+                                                          <a class="col-12 d-flex p-0 mt-2 mb-2" href="{{ script.file.url }}">
+                                                              <button class="btn btn-primary col-12">
+                                                                  <div>View Script</div>
+                                                              </button>
+                                                          </a>
+                                                      {% else %}
+                                                        <a class="col-12 d-flex p-0 w-100 mb-2 mt-2 align-self-center">
+                                                          <button disabled class="btn btn-primary col-12" style="white-space: normal;">
+                                                              <div>No Script</div>
+                                                          </button>
+                                                        </a>
+                                                        {% endif %}
+                                                  {% endfor %}
                                               </div>    
                                           </div>    
 
                                           <div class="row">
                                               <div class="col-12 col-lg-12 w-100 mb-2 mb-lg-0">
-                                                  {% if sketch.footage %}
-                                                      <a class="col-12 d-flex w-100 p-0 mb-2 mt-2" href="{{ sketch.file.url }}">
-                                                          <button class="btn btn-primary col-12" style="white-space: normal;">
-                                                              <div>Finsished Sketch</div>
-                                                              <div>({{sketch.file.size|filesizeformat}})</div>
+                                                  {% for final in sketch.final_uploads %}
+                                                      {% if final in sketch.final_uploads %}
+                                                          <a class="col-12 d-flex w-100 p-0 mb-2 mt-2" href="{{ final.file.url }}">
+                                                              <button class="btn btn-primary col-12" style="white-space: normal;">
+                                                                  <div>Finsished Sketch</div>
+                                                                  <div>({{ final.file.size|filesizeformat }})</div>
+                                                              </button>
+                                                          </a>
+                                                      {% else %}
+                                                        <a class="col-12 d-flex p-0 w-100 mt-2 mb-2 align-self-center">
+                                                          <button disabled class="btn btn-primary col-12" style="white-space: normal;">
+                                                              <div>No Finished Sketch</div>
                                                           </button>
-                                                      </a>
-                                                  {% else %}
-                                                    <a class="col-12 d-flex p-0 w-100 mt-2 mb-2 align-self-center">
-                                                      <button disabled class="btn btn-primary col-12" style="white-space: normal;">
-                                                          <div>No Finished Sketch</div>
-                                                      </button>
-                                                    </a>
-                                                  {% endif %}
+                                                        </a>
+                                                      {% endif %}
+                                                  {% endfor %}
                                               </div>
                                           </div>
-                                        -->
 
-                                    <div>
+                                    <!-- <div>
                                         <b>Footage:</b>
                                         {% for footage in sketch.footage_uploads %}
                                             <div>{{footage.file}}</div>
@@ -155,7 +159,7 @@
                                         {% for final in sketch.final_uploads %}
                                             <div>{{final.file}}</div>
                                         {% endfor %}
-                                    </div>
+                                    </div> -->
                                 </div>
                               </div>
                             </div>
