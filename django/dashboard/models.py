@@ -10,8 +10,10 @@ class Sketch(models.Model):
 
 
 class SketchFileUpload(models.Model):
+    TYPE_CHOICES = [('FOOTAGE', 'Footage'), ('SCRIPT', 'Script'), ('FINAL', 'Final')]
+
     file = models.FileField(upload_to='videos/', null=True, blank=True)
-    type = models.CharField(max_length=100)
+    type = models.CharField(max_length=7, choices=TYPE_CHOICES, blank=False)
     sketch = models.ForeignKey(Sketch, on_delete=models.CASCADE)
 
     def __str__(self):

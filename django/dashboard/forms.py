@@ -8,6 +8,7 @@ class SketchForm(forms.ModelForm):
         
 
 class ScriptUploadForm(forms.ModelForm):
+    prefix = "script"
     class Meta:
         model = SketchFileUpload
         fields = ['file']
@@ -16,6 +17,7 @@ class ScriptUploadForm(forms.ModelForm):
         }
 
 class FootageUploadForm(forms.ModelForm):
+    prefix = "footage"
     class Meta:
         model = SketchFileUpload
         fields = ['file']
@@ -24,6 +26,7 @@ class FootageUploadForm(forms.ModelForm):
         }
         
 class FinalVideoUploadForm(forms.ModelForm):
+    prefix = "final"
     class Meta:
         model = SketchFileUpload
         fields = ['file']

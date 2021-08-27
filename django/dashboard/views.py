@@ -9,52 +9,78 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 def index(request):
 
-# ------ EXAMPLE ------
-#
-# shows a hard-coded example the demonstrates model relationships
-# between Sketch and SketchFileUpload
-#
-#
-#    sketch_val = Sketch.objects.create(title="Multiupload Test Sketch", description="test description")
-#
-#    fake_file_1 = SimpleUploadedFile(
-#                    "brian_uploaded.txt",
-#                    b"these are the file contents!" # note the b in front of the string [bytes]
-#                ) 
-#    fake_file_2 = SimpleUploadedFile(
-#                    "joey_uploaded.txt",
-#                    b"these are the file contents!" # note the b in front of the string [bytes]
-#                ) 
-#    fake_file_3 = SimpleUploadedFile(
-#                    "chris_uploaded.txt",
-#                    b"these are the file contents!" # note the b in front of the string [bytes]
-#                ) 
-#
-#
-#    sketch_val = Sketch.objects.filter(title='Multiupload Test Sketch').first()
-#    fake_file_4 = SimpleUploadedFile(
-#                    "chris_uploaded.txt",
-#                    b"these are the file contents!" # note the b in front of the string [bytes]
-#                ) 
-#
-#    file_upload_1 = SketchFileUpload.objects.create(file=fake_file_1, type="FOOTAGE", sketch=sketch_val)
-#    file_upload_2 = SketchFileUpload.objects.create(file=fake_file_2, type="FOOTAGE", sketch=sketch_val)
-#    file_upload_3 = SketchFileUpload.objects.create(file=fake_file_3, type="FOOTAGE", sketch=sketch_val)
-#    file_upload_4 = SketchFileUpload.objects.create(file=fake_file_4, type="FINAL", sketch=sketch_val)
+    sketches_with_uploads = []
 
+    sketches = Sketch.objects.all().prefetch_related('id__sketch_file_upload')
 
-    firstsketch= Sketch.objects.all()
+    for sketch in sketches:
 
-    return render(request, "dashboard/index.html",{ 'firstsketch': firstsketch })
+        script_uploads = sketch.sketchfileupload_set.filter(type="SCRIPT").all()
+        footage_uploads = sketch.sketchfileupload_set.filter(type="FOOTAGE").all()
+        final_uploads = sketch.sketchfileupload_set.filter(type="FINAL").all()
+
+        sketch_with_upload = {
+            "title": sketch.title,
+            "description": sketch.description,
+            "script_uploads": script_uploads,
+            "footage_uploads": footage_uploads,
+            "final_uploads": final_uploads 
+        }
+        
+        sketches_with_uploads.append(sketch_with_upload)
+
+    return render(request, "dashboard/index.html",{ 'sketches': sketches_with_uploads })
 
 def showsketch(request):
 
+    # POST request
     if request.method == 'POST':
-        form = SketchForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
+
+        sketch_form = SketchForm(request.POST, request.FILES)
+        script_form = ScriptUploadForm(request.POST, request.FILES)
+        footage_form = FootageUploadForm(request.POST, request.FILES)
+        final_form = FinalVideoUploadForm(request.POST, request.FILES)
+
+        forms_are_valid = (sketch_form.is_valid() and script_form.is_valid()
+        and footage_form.is_valid() and final_form.is_valid())
+
+        if forms_are_valid:
+            # Save all forms correctly
+            sketch_form_val = sketch_form.save()
+            # Take id from sketch_form_val and set to each
+            # script, footage, and final form if they exist
+
+            script_data = script_form.cleaned_data
+            footage_data = footage_form.cleaned_data
+            final_data = final_form.cleaned_data
+
+
+            if script_data['file']:
+                SketchFileUpload.objects.create(
+                    file=script_data['file'],
+                    type="SCRIPT",
+                    sketch=sketch_form_val
+                )
+
+            if footage_data['file']:
+                SketchFileUpload.objects.create(
+                    file=footage_data['file'],
+                    type="FOOTAGE",
+                    sketch=sketch_form_val
+                )
+
+            if final_data['file']:
+                SketchFileUpload.objects.create(
+                    file=final_data['file'],
+                    type="FINAL",
+                    sketch=sketch_form_val
+                )
+
             return redirect('index')
+
+    # GET request
     else:
+        
         sketch_form = SketchForm()
         script_form = ScriptUploadForm()
         footage_form = FootageUploadForm()
@@ -67,5 +93,5 @@ def showsketch(request):
             "final_form": final_form,
         }
 
-    return render(request, 'dashboard/sketch.html', context)
+        return render(request, 'dashboard/sketch.html', context)
 
