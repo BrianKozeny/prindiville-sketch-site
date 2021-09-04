@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
+from django.forms import formset_factory
 from .models import Sketch, SketchFileUpload
 from .forms import SketchForm, ScriptUploadForm, FootageUploadForm, FinalVideoUploadForm
 
@@ -20,6 +21,7 @@ def index(request):
         final_uploads = sketch.sketchfileupload_set.filter(type="FINAL").all()
 
         sketch_with_upload = {
+            "id": sketch.pk,
             "title": sketch.title,
             "description": sketch.description,
             "script_uploads": script_uploads,
@@ -94,4 +96,70 @@ def showsketch(request):
         }
 
         return render(request, 'dashboard/sketch.html', context)
+
+def edit_sketch(request, id):
+
+    sketch = Sketch.objects.get(id=id)
+    script_uploads = SketchFileUpload.objects.filter(sketch_id = id, type="SCRIPT")
+    footage_uploads = SketchFileUpload.objects.filter(sketch_id = id, type="FOOTAGE")
+    final_uploads = SketchFileUpload.objects.filter(sketch_id = id, type="FINAL")
+
+    if request.method == 'POST':
+        filled_form = SketchForm(request.POST, instance = sketch)
+        print("REQUEST POST: ", request.POST)
+        print("REQUEST FILES: ", request.FILES)
+
+        # Check form and deleted files
+        for key, val in request.POST.items():
+            if not val:
+                continue 
+
+            if "clear" in key:
+                id = key[0]
+                file_upload = SketchFileUpload.objects.get(id=id)
+                print("Deleting file:", file_upload.file)
+                # some delete method for SketchFileUpload with id
+                # as well as os file deletion (be careful!)
+
+            elif key == "title":
+                sketch.title = val
+                print("Title", val)
+
+            elif key == "description":
+                sketch.description = val 
+                print("Description", val)
+
+
+        # Check file uploads
+        for key, val in request.FILES.items():
+            if key == "new-script-file":
+                print("New Script File:", val)
+
+            elif key == "new-footage-file":
+                print("New Footage File:", val)
+
+            elif key == "new-final-file":
+                print("New Final File:", val)
+            
+
+        return redirect('index')
+    else:
+        
+        sketch_form = SketchForm(instance = sketch)
+
+        new_script_form = ScriptUploadForm(prefix="new-script")
+        new_footage_form = FootageUploadForm(prefix="new-footage")
+        new_final_form = FinalVideoUploadForm(prefix="new-final")
+
+        context = {
+            "sketch_form": sketch_form,
+            "new_script_form": new_script_form,
+            "new_footage_form": new_footage_form,
+            "new_final_form": new_final_form,
+            "script_uploads": script_uploads,
+            "footage_uploads": footage_uploads,
+            "final_uploads":  final_uploads,
+        }
+
+        return render(request, 'dashboard/edit_sketch.html', context)
 
