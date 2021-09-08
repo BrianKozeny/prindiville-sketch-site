@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'dashboard',
     'sketch',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

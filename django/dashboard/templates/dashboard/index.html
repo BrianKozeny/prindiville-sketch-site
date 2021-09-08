@@ -103,8 +103,8 @@
 
                                           <div class="row">
                                               <div class="col-12 col-lg-12">
-                                                  {% for script in sketch.footage_uploads  %}
-                                                      {% if script in sketch.footage_uploads %}
+                                                  {% for script in sketch.script_uploads  %}
+                                                      {% if script in sketch.script_uploads %}
                                                           <a class="col-12 d-flex p-0 mt-2 mb-2" href="{{ script.file.url }}">
                                                               <button class="btn btn-primary col-12">
                                                                   <div>View Script</div>
@@ -142,7 +142,8 @@
                                               </div>
                                           </div>
 
-                                          <a href="{% url 'edit_sketch' sketch.id %}">Edit Sketch</a>
+                                          <a class="btn btn-primary" href="{% url 'edit_sketch' sketch.id %}">Edit Sketch</a>
+                                          <a class="btn btn-danger" href="{% url 'delete_sketch' sketch.id %}">Delete Sketch</a>
                                     <!-- <div>
                                         <b>Footage:</b>
                                         {% for footage in sketch.footage_uploads %}

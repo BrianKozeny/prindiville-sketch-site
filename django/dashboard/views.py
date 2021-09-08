@@ -45,6 +45,7 @@ def showsketch(request):
 
         forms_are_valid = (sketch_form.is_valid() and script_form.is_valid()
         and footage_form.is_valid() and final_form.is_valid())
+        print("FORMS ARE VALID: ", forms_are_valid)
 
         if forms_are_valid:
             # Save all forms correctly
@@ -79,6 +80,8 @@ def showsketch(request):
                 )
 
             return redirect('index')
+        else:
+            print("Form is not valid")
 
     # GET request
     else:
@@ -163,3 +166,14 @@ def edit_sketch(request, id):
 
         return render(request, 'dashboard/edit_sketch.html', context)
 
+def delete_sketch(request, id):
+    sketch = Sketch.objects.get(id=id)
+    script = SketchFileUpload.objects.filter(sketch_id = id, type="SCRIPT")
+    footage = SketchFileUpload.objects.filter(sketch_id = id, type="FOOTAGE")
+    final = SketchFileUpload.objects.filter(sketch_id = id, type="FINAL")
+    sketch.delete()
+    script.delete()
+    footage.delete()
+    final.delete()
+
+    return redirect('index')
