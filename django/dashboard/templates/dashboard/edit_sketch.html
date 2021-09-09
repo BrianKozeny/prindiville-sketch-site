@@ -43,12 +43,13 @@
                 <br />
                 <br />
                 <div class="d-flex flex-column w-100 mt-3">
-                    {% for scripts_upload in scripts_uploads %}
-                       <a href="/media/{{scripts_upload.file}}">{{ scripts_upload.file }}</a>
+                    {% for script_upload in script_uploads %}
+                       <a href="/media/{{script_upload.file}}">{{ script_upload.file }}</a>
                        <div class="d-flex align-items-center">
-                           <label class="mr-3" for="{{ scripts_upload.id }}-file-clear_id">Delete</label>
-                           <input type="checkbox" name="{{ scripts_upload.id }}-clear" id="{{ scripts_upload.id }}-file-clear_id">
-                        </div>
+                           <a class="btn btn-danger" href="{% url 'delete_script' script_upload.sketch_id script_upload.id %}">Delete Script</a>
+                           <!--<label class="mr-3" for="{{ script_upload.id }}-file-clear_id">Delete</label>
+                           <input type="checkbox"  href="{% url 'delete_script' script_upload.sketch_id script_upload.id %}" id="{{ script_upload.id }}-file-clear_id">-->
+                       </div>
                     {% endfor %}
                 </div>
                 <div class="d-flex flex-column w-100 mt-3">
@@ -60,8 +61,9 @@
                     {% for footage_upload in footage_uploads %}
                        <a href="/media/{{footage_upload.file}}">{{ footage_upload.file }}</a>
                        <div class="d-flex align-items-center">
-                           <label class="mr-3" for="{{ footage_upload.id }}-file-clear_id">Delete</label>
-                           <input type="checkbox" name="{{ footage_upload.id }}-clear" id="{{ footage_upload.id }}-file-clear_id">
+                           <a class="btn btn-danger" href="{% url 'delete_footage' footage_upload.sketch_id footage_upload.id %}">Delete Footage</a>
+                           <!--<label class="mr-3" for="{{ footage_upload.id }}-file-clear_id">Delete</label>
+                           <input type="checkbox"  href="{% url 'delete_footage' footage_upload.sketch_id footage_upload.id %}" id="{{ footage_upload.id }}-file-clear_id">-->
                         </div>
                     {% endfor %}
                 </div>
@@ -74,8 +76,9 @@
                     {% for final_upload in final_uploads %}
                        <a href="/media/{{final_upload.file}}">{{ final_upload.file }}</a>
                        <div class="d-flex align-items-center">
-                           <label class="mr-3" for="{{ final_upload.id }}-file-clear_id">Delete</label>
-                           <input type="checkbox" name="{{ final_upload.id }}-clear" id="{{ final_upload.id }}-file-clear_id">
+                           <a class="btn btn-danger" href="{% url 'delete_final' final_upload.sketch_id final_upload.id %}">Delete Final</a>
+                           <!---<label class="mr-3" for="{{ final_upload.id }}-file-clear_id">Delete</label>
+                           <input type="checkbox"  href="{% url 'delete_final' final_upload.sketch_id final_upload.id %}" id="{{ final_upload.id }}-file-clear_id">-->
                        </div>
                     {% endfor %}
                 </div>
