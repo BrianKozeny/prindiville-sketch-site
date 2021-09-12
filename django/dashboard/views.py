@@ -117,14 +117,7 @@ def edit_sketch(request, id):
             if not val:
                 continue 
 
-            if "clear" in key:
-                id = key[0]
-                file_upload = SketchFileUpload.objects.get(id=id)
-                print("Deleting file:", file_upload.file)
-                # some delete method for SketchFileUpload with id
-                # as well as os file deletion (be careful!)
-
-            elif key == "title":
+            if key == "title":
                 sketch.title = val
                 print("Title", val)
 
@@ -133,7 +126,7 @@ def edit_sketch(request, id):
                 print("Description", val)
 
 
-        # Check file uploads
+        # Check file uploads (STILL NEED TO DO)
         for key, val in request.FILES.items():
             if key == "new-script-file":
                 print("New Script File:", val)
@@ -168,87 +161,14 @@ def edit_sketch(request, id):
 
 def delete_sketch(request, id):
     sketch = Sketch.objects.get(id=id)
-    script = SketchFileUpload.objects.filter(sketch_id = id, type="SCRIPT")
-    footage = SketchFileUpload.objects.filter(sketch_id = id, type="FOOTAGE")
-    final = SketchFileUpload.objects.filter(sketch_id = id, type="FINAL")
+    uploads = SketchFileUpload.objects.filter(sketch_id = id)
+    uploads.delete()
     sketch.delete()
-    script.delete()
-    footage.delete()
-    final.delete()
 
     return redirect('index')
 
-def delete_script(request, sketch_id, script_id):
-    sketch = Sketch.objects.get(id=sketch_id)
-    script = SketchFileUpload.objects.filter(id = script_id, type="SCRIPT")
-    sketch_form = SketchForm(instance = sketch)
-    new_script_form = ScriptUploadForm(prefix="new-script")
-    new_footage_form = FootageUploadForm(prefix="new-footage")
-    new_final_form = FinalVideoUploadForm(prefix="new-final")
-    script_uploads = SketchFileUpload.objects.filter(sketch_id = sketch_id, type="SCRIPT")
-    footage_uploads = SketchFileUpload.objects.filter(sketch_id = sketch_id, type="FOOTAGE")
-    final_uploads = SketchFileUpload.objects.filter(sketch_id = sketch_id, type="FINAL")
 
-    context = {
-        "sketch_form": sketch_form,
-        "new_script_form": new_script_form,
-        "new_footage_form": new_footage_form,
-        "new_final_form": new_final_form,
-        "script_uploads": script_uploads,
-        "footage_uploads": footage_uploads,
-        "final_uploads":  final_uploads,
-    }
-
-    script.delete()
-
-    return render(request, 'dashboard/edit_sketch.html', context)
-
-def delete_footage(request, sketch_id, footage_id):
-    sketch = Sketch.objects.get(id=sketch_id)
-    footage = SketchFileUpload.objects.filter(id = footage_id, type="FOOTAGE")
-    sketch_form = SketchForm(instance = sketch)
-    new_script_form = ScriptUploadForm(prefix="new-script")
-    new_footage_form = FootageUploadForm(prefix="new-footage")
-    new_final_form = FinalVideoUploadForm(prefix="new-final")
-    script_uploads = SketchFileUpload.objects.filter(sketch_id = sketch_id, type="SCRIPT")
-    footage_uploads = SketchFileUpload.objects.filter(sketch_id = sketch_id, type="FOOTAGE")
-    final_uploads = SketchFileUpload.objects.filter(sketch_id = sketch_id, type="FINAL")
-
-    context = {
-        "sketch_form": sketch_form,
-        "new_script_form": new_script_form,
-        "new_footage_form": new_footage_form,
-        "new_final_form": new_final_form,
-        "script_uploads": script_uploads,
-        "footage_uploads": footage_uploads,
-        "final_uploads":  final_uploads,
-    }
-
-    footage.delete()
-
-    return render(request, 'dashboard/edit_sketch.html', context)
-
-def delete_final(request, sketch_id, final_id):
-    sketch = Sketch.objects.get(id=sketch_id)
-    final = SketchFileUpload.objects.filter(id = final_id, type="FINAL")
-    sketch_form = SketchForm(instance = sketch)
-    new_script_form = ScriptUploadForm(prefix="new-script")
-    new_footage_form = FootageUploadForm(prefix="new-footage")
-    new_final_form = FinalVideoUploadForm(prefix="new-final")
-    script_uploads = SketchFileUpload.objects.filter(sketch_id = sketch_id, type="SCRIPT")
-    footage_uploads = SketchFileUpload.objects.filter(sketch_id = sketch_id, type="FOOTAGE")
-    final_uploads = SketchFileUpload.objects.filter(sketch_id = sketch_id, type="FINAL")
-
-    context = {
-        "sketch_form": sketch_form,
-        "new_script_form": new_script_form,
-        "new_footage_form": new_footage_form,
-        "new_final_form": new_final_form,
-        "script_uploads": script_uploads,
-        "footage_uploads": footage_uploads,
-        "final_uploads":  final_uploads,
-    }
-
-    final.delete()
-
-    return render(request, 'dashboard/edit_sketch.html', context)
+def delete_upload(request, sketch_id, upload_id):
+    upload = SketchFileUpload.objects.get(id = upload_id)
+    upload.delete()
+    return redirect('/edit/' + str(sketch_id))
