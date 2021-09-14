@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from django.forms import formset_factory
+from django.db import transaction
 from .models import Sketch, SketchFileUpload
 from .forms import SketchForm, ScriptUploadForm, FootageUploadForm, FinalVideoUploadForm
 
@@ -129,13 +130,28 @@ def edit_sketch(request, id):
         # Check file uploads (STILL NEED TO DO)
         for key, val in request.FILES.items():
             if key == "new-script-file":
+                SketchFileUpload.objects.create(
+                    file=val,
+                    type="SCRIPT",
+                    sketch=sketch
+                )
                 print("New Script File:", val)
 
             elif key == "new-footage-file":
+                SketchFileUpload.objects.create(
+                    file=val,
+                    type="FOOTAGE",
+                    sketch=sketch
+                )
                 print("New Footage File:", val)
 
             elif key == "new-final-file":
-                print("New Final File:", val)
+                with transaction.atomic():
+                    final_upload = SketchFileUpload.objects.create(
+                        type="FINAL",
+                        sketch=sketch
+                    )
+                    final_upload.file.save(val.name, val)
             
 
         return redirect('index')

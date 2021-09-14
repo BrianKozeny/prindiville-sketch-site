@@ -43,6 +43,9 @@
                 <br />
                 <br />
                 <div class="d-flex flex-column w-100 mt-3">
+                    {{ new_script_form }}
+                </div>
+                <div class="d-flex flex-column w-100 mt-3">
                     {% for script_upload in script_uploads %}
                        <a href="/media/{{script_upload.file}}">{{ script_upload.file }}</a>
                        <div class="d-flex align-items-center">
@@ -50,11 +53,11 @@
                        </div>
                     {% endfor %}
                 </div>
+                <br />
+                <br />
                 <div class="d-flex flex-column w-100 mt-3">
-                    {{ new_script_form }}
+                    {{ new_footage_form }}
                 </div>
-                <br />
-                <br />
                 <div class="d-flex flex-column w-100 mt-3">
                     {% for footage_upload in footage_uploads %}
                        <a href="/media/{{footage_upload.file}}">{{ footage_upload.file }}</a>
@@ -63,11 +66,11 @@
                         </div>
                     {% endfor %}
                 </div>
+                <br />
+                <br />
                 <div class="d-flex flex-column w-100 mt-3">
-                    {{ new_footage_form }}
+                    {{ new_final_form }}
                 </div>
-                <br />
-                <br />
                 <div class="d-flex flex-column w-100 mt-3">
                     {% for final_upload in final_uploads %}
                        <a href="/media/{{final_upload.file}}">{{ final_upload.file }}</a>
@@ -75,9 +78,6 @@
                            <a class="btn btn-danger" href="{% url 'delete_upload' final_upload.sketch_id final_upload.id %}">Delete Final</a>
                        </div>
                     {% endfor %}
-                </div>
-                <div class="d-flex flex-column w-100 mt-3">
-                    {{ new_final_form }}
                 </div>
                 <br />
                 <br />
