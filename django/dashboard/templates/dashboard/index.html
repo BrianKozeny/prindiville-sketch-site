@@ -102,30 +102,24 @@
                                                   Footage Clips
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                              </div>
-                                          <!--
                                                   {% for footage in sketch.footage_uploads  %}
                                                     {% if footage in sketch.footage_uploads %}
-                                                          <a class="col-12 d-flex p-0 mb-2" href="{{ footage.file.url }}">
+                                                    <li><a class="dropdown-item col-12 d-flex p-0 mb-2" href="{{ footage.file.url }}">
                                                               <button class="btn btn-outline-dark col-12" style="white-space: normal;">
                                                                   <div>Download Footage</div>
                                                                   <div>({{ footage.file.size|filesizeformat }})</div>
                                                               </button>
                                                             </a>
                                                       {% else %}
-                                                        <a class="col-12 d-flex p-0 w-100 mb-2 align-self-center">
+                                                        <a class=" dropdown-item col-12 d-flex p-0 w-100 mb-2 align-self-center">
                                                           <button disabled class="btn btn-warning col-12" style="white-space: normal;">
                                                               <div>No Footage</div>
                                                           </button>
-                                                        </a>
+                                                        </a></li>
                                                       {% endif %}
                                                   {% endfor %}
-                                          -->
-
+                                                </ul>
+                                              </div>
                                             </div>
                                           <div class="me-3">
                                               <div class="dropdown">
@@ -133,30 +127,23 @@
                                                   Scripts
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                              </div>
-                                              <!--
-                                              <div class="col-12 col-lg-12">
                                                   {% for script in sketch.script_uploads  %}
                                                       {% if script in sketch.script_uploads %}
-                                                          <a class="col-12 d-flex p-0 mt-2 mb-2" href="{{ script.file.url }}">
+                                                      <li><a class="dropdown-item col-12 d-flex p-0 mt-2 mb-2" href="{{ script.file.url }}">
                                                               <button class="btn btn-outline-dark col-12">
                                                                   <div>View Script</div>
                                                               </button>
                                                           </a>
                                                       {% else %}
-                                                        <a class="col-12 d-flex p-0 w-100 mb-2 mt-2 align-self-center">
+                                                        <a class="dropdown-item col-12 d-flex p-0 w-100 mb-2 mt-2 align-self-center">
                                                           <button disabled class="btn btn-warning col-12" style="white-space: normal;">
                                                               <div>No Script</div>
                                                           </button>
-                                                        </a>
+                                                        </a></li>
                                                         {% endif %}
                                                   {% endfor %}
-                                              </div>    
-                                            -->
+                                                </ul>
+                                              </div>
                                           </div>    
                                           <div class="me-3">
                                               <div class="dropdown">
@@ -164,31 +151,24 @@
                                                   Final Videos
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                              </div>
-                                  <!--
-                                              <div class="col-12 col-lg-12 w-100 mb-2 mb-lg-0">
                                                   {% for final in sketch.final_uploads %}
                                                       {% if final in sketch.final_uploads %}
-                                                          <a class="col-12 d-flex w-100 p-0 mb-2 mt-2" href="{{ final.file.url }}">
+                                                      <li><a class="dropdown-item col-12 d-flex w-100 p-0 mb-2 mt-2" href="{{ final.file.url }}">
                                                               <button class="btn btn-outline-dark col-12" style="white-space: normal;">
                                                                   <div>Finsished Sketch</div>
                                                                   <div>({{ final.file.size|filesizeformat }})</div>
                                                               </button>
                                                           </a>
                                                       {% else %}
-                                                        <a class="col-12 d-flex p-0 w-100 mt-2 mb-2 align-self-center">
+                                                        <a class="dropdown-item col-12 d-flex p-0 w-100 mt-2 mb-2 align-self-center">
                                                           <button disabled class="btn btn-warning col-12" style="white-space: normal;">
                                                               <div>No Finished Sketch</div>
                                                           </button>
-                                                        </a>
+                                                        </a></li>
                                                       {% endif %}
                                                   {% endfor %}
+                                                </ul>
                                               </div>
-                                    -->
                                           </div>
                                       </div>
                                   </div>
