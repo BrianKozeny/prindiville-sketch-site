@@ -97,78 +97,68 @@
                                       <div class="col-12  mb-3"><h6>Downloads:</h6></div>
                                       <div class="col-12 d-flex mb-5">
                                           <div class="me-3">
-                                              <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                  Footage Clips
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                  {% for footage in sketch.footage_uploads  %}
-                                                    {% if footage in sketch.footage_uploads %}
-                                                    <li><a class="dropdown-item col-12 d-flex p-0 mb-2" href="{{ footage.file.url }}">
-                                                              <button class="btn btn-outline-dark col-12" style="white-space: normal;">
-                                                                  <div>Download Footage</div>
-                                                                  <div>({{ footage.file.size|filesizeformat }})</div>
-                                                              </button>
-                                                            </a>
-                                                      {% else %}
-                                                        <a class=" dropdown-item col-12 d-flex p-0 w-100 mb-2 align-self-center">
-                                                          <button disabled class="btn btn-warning col-12" style="white-space: normal;">
-                                                              <div>No Footage</div>
-                                                          </button>
-                                                        </a></li>
-                                                      {% endif %}
-                                                  {% endfor %}
-                                                </ul>
-                                              </div>
-                                            </div>
-                                          <div class="me-3">
+                                            {% if sketch.script_uploads %}
                                               <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                                   Scripts
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                   {% for script in sketch.script_uploads  %}
-                                                      {% if script in sketch.script_uploads %}
                                                       <li><a class="dropdown-item col-12 d-flex p-0 mt-2 mb-2" href="{{ script.file.url }}">
                                                               <button class="btn btn-outline-dark col-12">
-                                                                  <div>View Script</div>
+                                                                  <div>({{script.file.name}})</div>
                                                               </button>
-                                                          </a>
-                                                      {% else %}
-                                                        <a class="dropdown-item col-12 d-flex p-0 w-100 mb-2 mt-2 align-self-center">
-                                                          <button disabled class="btn btn-warning col-12" style="white-space: normal;">
-                                                              <div>No Script</div>
-                                                          </button>
-                                                        </a></li>
-                                                        {% endif %}
+                                                          </a></li>
                                                   {% endfor %}
                                                 </ul>
                                               </div>
+                                            {% else %}
+                                                <button class="btn btn-secondary" disabled tabindex="-1" role="button" aria-disabled="true">No Scripts</button>
+                                            {% endif %}
                                           </div>    
                                           <div class="me-3">
+                                            {% if sketch.footage_uploads %}
+                                              <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                  Footage Clips
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                  {% for footage in sketch.footage_uploads  %}
+                                                    <li><a class="dropdown-item col-12 d-flex p-0 mb-2" href="{{ footage.file.url }}">
+                                                              <button class="btn btn-outline-dark col-12" style="white-space: normal;">
+                                                                  <div>({{ footage.file.name}})</div>
+                                                                  <div>({{ footage.file.size|filesizeformat }})</div>
+                                                              </button>
+                                                        </a></li>
+                                                  {% endfor %}
+                                                </ul>
+                                              </div>
+                                            {% else %}
+                                                <button class="btn btn-secondary" disabled tabindex="-1" role="button" aria-disabled="true">No Footage</button>
+                                            {% endif %}
+                                          </div>
+                                          <div class="me-3">
+                                            {% if sketch.final_uploads %}
                                               <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                                   Final Videos
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                   {% for final in sketch.final_uploads %}
-                                                      {% if final in sketch.final_uploads %}
-                                                      <li><a class="dropdown-item col-12 d-flex w-100 p-0 mb-2 mt-2" href="{{ final.file.url }}">
+                                                      <li><a class="dropdown-item col-12 d-flex p-0 mb-2" href="{{ final.file.url }}">
                                                               <button class="btn btn-outline-dark col-12" style="white-space: normal;">
-                                                                  <div>Finsished Sketch</div>
+                                                                  <div>({{final.file.name}})</div>
                                                                   <div>({{ final.file.size|filesizeformat }})</div>
                                                               </button>
-                                                          </a>
-                                                      {% else %}
-                                                        <a class="dropdown-item col-12 d-flex p-0 w-100 mt-2 mb-2 align-self-center">
-                                                          <button disabled class="btn btn-warning col-12" style="white-space: normal;">
-                                                              <div>No Finished Sketch</div>
-                                                          </button>
-                                                        </a></li>
-                                                      {% endif %}
+                                                          </a></li>
                                                   {% endfor %}
                                                 </ul>
                                               </div>
+                                              {% else %}
+                                                  <button class="btn btn-secondary" disabled tabindex="-1" role="button" aria-disabled="true">
+                                                      No Finished Sketches
+                                                  </button>
+                                              {% endif %}
                                           </div>
                                       </div>
                                   </div>

@@ -17,7 +17,7 @@ class SketchFileUpload(models.Model):
     sketch = models.ForeignKey(Sketch, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return self.file.name
 
     """ 
     def delete(self, *args, **kwargs):
