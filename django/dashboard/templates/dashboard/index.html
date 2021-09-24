@@ -168,7 +168,7 @@
                                           <a class="w-100 btn btn-primary" href="{% url 'edit_sketch' sketch.id %}">Edit Sketch</a>
                                         </div>
                                         <div class="col-3">
-                                          <a class="w-100 btn btn-danger" href="{% url 'delete_sketch' sketch.id %}">Delete Sketch</a>
+                                          <a class="w-100 btn btn-danger" onclick="return confirm('Are you sure you ant to delete this?')" href="{% url 'delete_sketch' sketch.id %}">Delete Sketch</a>
                                         </div>
                                     </div>
                                     <!-- <div>

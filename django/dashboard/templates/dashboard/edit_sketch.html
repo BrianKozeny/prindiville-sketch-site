@@ -49,7 +49,7 @@
                     {% for script_upload in script_uploads %}
                        <a href="/media/{{script_upload.file}}">{{ script_upload.file }}</a>
                        <div class="d-flex align-items-center">
-                           <a class="btn btn-danger" href="{% url 'delete_upload' script_upload.sketch_id script_upload.id %}">Delete Script</a>
+                           <a class="btn btn-danger" onclick="return confirm('Are you sure you ant to delete this?')"  href="{% url 'delete_upload' script_upload.sketch_id script_upload.id %}">Delete Script</a>
                        </div>
                     {% endfor %}
                 </div>
@@ -62,7 +62,7 @@
                     {% for footage_upload in footage_uploads %}
                        <a href="/media/{{footage_upload.file}}">{{ footage_upload.file }}</a>
                        <div class="d-flex align-items-center">
-                           <a class="btn btn-danger" href="{% url 'delete_upload' footage_upload.sketch_id footage_upload.id %}">Delete Footage</a>
+                           <a class="btn btn-danger" onclick="return confirm('Are you sure you ant to delete this?')"  href="{% url 'delete_upload' footage_upload.sketch_id footage_upload.id %}">Delete Footage</a>
                         </div>
                     {% endfor %}
                 </div>
@@ -75,7 +75,7 @@
                     {% for final_upload in final_uploads %}
                        <a href="/media/{{final_upload.file}}">{{ final_upload.file }}</a>
                        <div class="d-flex align-items-center">
-                           <a class="btn btn-danger" href="{% url 'delete_upload' final_upload.sketch_id final_upload.id %}">Delete Final</a>
+                           <a class="btn btn-danger" onclick="return confirm('Are you sure you ant to delete this?')" href="{% url 'delete_upload' final_upload.sketch_id final_upload.id %}">Delete Final</a>
                        </div>
                     {% endfor %}
                 </div>
