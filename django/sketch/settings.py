@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'dashboard',
     'sketch',
+    'sketch_auth',
     'django_cleanup.apps.CleanupConfig',
 ]
 
@@ -65,7 +66,7 @@ ROOT_URLCONF = 'sketch.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['dashboard/templates'],
+        'DIRS': ['dashboard/templates', 'auth/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,3 +142,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static_assets",
 ]
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL ='/'
