@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, include
-from . import views
+from sketch_auth.views import SketchLoginView
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('login/', views.SketchLogin.as_view(), name='sketch_auth/login'),
+    path('login/', SketchLoginView.as_view(), name='sketch_auth/login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout')
 ]
 

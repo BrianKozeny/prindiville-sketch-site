@@ -2,16 +2,19 @@
     <head>
         <title>LoginView</title>
         
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
 
     <body>
-        <form method="POST">{% csrf_token %}
-            
-         <!-- form variable -->    
-         {{ form.as_p }} 
+        <div class="d-flex h-75 align-items-center justify-content-center">
+            <form method="POST">{% csrf_token %}
+                
+             <!-- form variable -->    
+                {{ form.as_p }} 
 
-          <input type="submit" name="sumbit">
-        </form>
+                <input type="submit" name="sumbit">
+            </form>
+        </div>
     </body>
 
 </html>

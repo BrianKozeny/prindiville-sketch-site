@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'sketch',
     'sketch_auth',
     'django_cleanup.apps.CleanupConfig',
+    'login_required'
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'login_required.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'sketch.urls'
@@ -142,5 +144,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static_assets",
 ]
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL ='/'
+
+LOGIN_URL = 'login/'
+LOGOUT_REDIRECT_URL ='login/'
