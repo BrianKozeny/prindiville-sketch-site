@@ -145,5 +145,5 @@ STATICFILES_DIRS = [
     BASE_DIR / "static_assets",
 ]
 
-LOGIN_URL = 'login/'
-LOGOUT_REDIRECT_URL ='login/'
+LOGIN_URL = '/login'
+LOGOUT_REDIRECT_URL = '/login?next=/'
