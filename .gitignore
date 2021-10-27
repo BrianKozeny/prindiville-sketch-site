@@ -117,3 +117,4 @@ GitHub.sublime-settings
 
 # Custom
 prod-run-server.sh
+dev-run-server.sh
